@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+   itcd-cm:
+      image: harbor.fazenda.mg.gov.br/disteds_itcd/controle-pagamento:${VERSION}
+      labels:
+         - EQUIPE=DISTEDS-ITCD
+      deploy: 
+         replicas: 1
+      ports: 
+        - "37004:8443"
+      environment:
+        - ORACLE_HOST_ITCD_CM
+        - ORACLE_USER_ITCD_CM
+        - CAMINHO_DIRETORIO_ITCD
+        - PROFILE=dsv
+        - CI_USER_DEPLOY
+        - CI_PASSWORD_DEPLOY
+        - DOCKER_SECRET=/run/secrets/DISTSOL_PWD_ITCD_CONTROLE_PAGTO01_DES
+        - DOCKER_SECRET_USER=/run/secrets/DISTSOL_USER_ITCD_CONTROLE_PAGTO01_DES
+      secrets:
+       - DISTSOL_PWD_ITCD_CONTROLE_PAGTO01_DES
+       - DISTSOL_USER_ITCD_CONTROLE_PAGTO01_DES
+      volumes:
+        - ${PATH_ITCD_HOST}:${CAMINHO_DIRETORIO_ITCD}
+
+
+  
+secrets:
+  DISTSOL_PWD_ITCD_CONTROLE_PAGTO01_DES:
+    external: true
+  DISTSOL_USER_ITCD_CONTROLE_PAGTO01_DES:
+    external: true
