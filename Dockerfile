@@ -1,5 +1,4 @@
-FROM adoptopenjdk/openjdk11:ubi
-ARG JAR_FILE=*.jar
-COPY ${JAR_FILE} controle-pagamento.jar
-ENTRYPOINT ["java","-Duser.timezone=PST","-jar","/controle-pagamento.jar"]
-EXPOSE 8443
+FROM php:7.1-apache
+COPY ./ /var/www/html
+EXPOSE 80
+CMD ["apache2-foreground"]
