@@ -1,4 +1,7 @@
-FROM php:7.1-apache
-COPY ./ /var/www/html
-EXPOSE 80
-CMD ["apache2-foreground"]
+# Dockerfile
+
+FROM ubuntu:20.04
+
+RUN apt update && apt install -y sbcl
+
+WORKDIR /usr/src
