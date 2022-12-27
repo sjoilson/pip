@@ -1,7 +1,7 @@
-# Dockerfile
+FROM adoptopenjdk/openjdk11:ubi
 
-FROM ubuntu:20.04
+COPY controle-pagamento.jar /
 
-RUN apt update && apt install -y sbcl
+ENTRYPOINT ["java","-Duser.timezone=PST","-jar","/controle-pagamento.jar"]
 
-WORKDIR /usr/src
+EXPOSE 8443
