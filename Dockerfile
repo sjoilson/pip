@@ -1,4 +1,4 @@
-FROM debian
+ROM debian
 
 RUN apt-get update && apt-get install -y apache2 && apt-get clean
 
@@ -12,3 +12,6 @@ LABEL description="Webserver"
 
 VOLUME /var/www/html
 EXPOSE 80
+
+ENTRYPOINT ["/usr/sbin/apachectl"]
+CMD ["-D", "FOREGROUND"]
