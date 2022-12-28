@@ -1,8 +1,8 @@
-FROM ubuntu 
-RUN apt update 
-RUN apt install apache2 –y
-RUN apt install apache2-utils –y
-RUN apt clean 
-EXPOSE 80
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM debian
 
+LABEL app="Giropops"
+ENV JOILSON="LINDO"
+
+RUN apt-get update && apt-get install -y stress && apt-get clean
+
+CMD stress --cpu 1 --vm-bytes 64M --vm 1
