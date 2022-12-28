@@ -1,7 +1,5 @@
-FROM adoptopenjdk/openjdk11:ubi
+FROM debian
 
-COPY controle-pagamento.jar /
+RUN apt-get update && apt-get install -y apache2 && apt-get clean
 
-ENTRYPOINT ["java","-Duser.timezone=PST","-jar","/controle-pagamento.jar"]
-
-EXPOSE 8443
+EXPOSE 80
