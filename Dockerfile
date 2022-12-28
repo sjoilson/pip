@@ -1,14 +1,8 @@
-# Pull the minimal Ubuntu image
-FROM ubuntu
+FROM debian
 
-# Install Nginx
-RUN apt-get -y update && apt-get -y install nginx
+LABEL app="Giropops"
+ENV JOILSON="LINDO"
 
-# Copy the Nginx config
-COPY default /etc/nginx/sites-available/default
+RUN apt-get update && apt-get install -y stress && apt-get install -y nginx 
 
-# Expose the port for access
-EXPOSE 80/tcp
-
-# Run the Nginx server
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD stress --cpu 1 --vm-bytes 64M --vm 1
