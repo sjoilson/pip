@@ -1,8 +1,8 @@
-FROM centos:latest
+FROM ubuntu
 
 MAINTAINER NewstarCorporation
 
-RUN yum install httpd -y 
+RUN apt-get install apache2 -y 
 
 COPY index.html /var/www/html/
 
