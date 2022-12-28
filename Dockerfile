@@ -1,4 +1,11 @@
-FROM ubuntu:18.04
-RUN apt-get update
-RUN apt-get install apache2 -y
+FROM debian:latest
 
+LABEL maintainer="Macoratti"
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install nginx -y
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
